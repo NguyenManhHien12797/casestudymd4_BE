@@ -43,7 +43,7 @@ public class UserRelaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UserRela> enableUserRela(@PathVariable Long id){
-        Optional<UserRela> userRelaOptional= UserRelaService.findById(id);
+        Optional<UserRela> userRelaOptional= userRelaService.findById(id);
         if (!userRelaOptional.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
@@ -53,7 +53,7 @@ public class UserRelaController {
 
     @PutMapping("/{id}")
     public ResponseEntity<UserRela> disableUserRela(@PathVariable Long id){
-        Optional<UserRela>userRelaOptional=UserRelaService.findById(id);
+        Optional<UserRela>userRelaOptional=userRelaService.findById(id);
         if (!userRelaOptional.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

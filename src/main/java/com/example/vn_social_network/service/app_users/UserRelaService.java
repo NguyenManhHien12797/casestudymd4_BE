@@ -18,7 +18,7 @@ public class UserRelaService  implements IUserRelaService{
     }
 
     @Override
-    public static Optional<UserRela> findById(Long id) {
+    public Optional<UserRela> findById(Long id) {
         return userRelaRepository.findById(id);
     }
 

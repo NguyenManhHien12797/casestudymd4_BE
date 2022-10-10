@@ -13,6 +13,7 @@ import java.util.Optional;
 @Service
 public class UserService implements IUserService, UserDetailsService {
     @Autowired
+    static
     UserRepository userRepository;
     @Override
     public Iterable<AppUsers> findAll() {
@@ -20,9 +21,10 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
-    public static Optional<AppUsers> findById(Long id) {
+    public Optional<AppUsers> findById(Long id) {
         return userRepository.findById(id);
     }
+
 
     @Override
     public AppUsers save(AppUsers users) {
