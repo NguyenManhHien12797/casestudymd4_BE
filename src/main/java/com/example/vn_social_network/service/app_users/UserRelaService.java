@@ -18,7 +18,7 @@ public class UserRelaService  implements IUserRelaService{
     }
 
     @Override
-    public Optional<UserRela> findById(Long id) {
+    public static Optional<UserRela> findById(Long id) {
         return userRelaRepository.findById(id);
     }
 
@@ -29,6 +29,6 @@ public class UserRelaService  implements IUserRelaService{
 
     @Override
     public void remove(Long id) {
-        userRelaRepository.deleteById(id);
+        userRelaRepository.disableByStatus(id);
     }
 }

@@ -3,11 +3,11 @@ package com.example.vn_social_network.controller.app_user;
 
 import com.example.vn_social_network.model.app_users.UserRela;
 import com.example.vn_social_network.service.app_users.IUserRelaService;
+import com.example.vn_social_network.service.app_users.UserRelaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -31,14 +31,34 @@ public class UserRelaController {
         return new ResponseEntity<>(userRelaService.save(userRela),HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<UserRela> deleteUserRela(@PathVariable Long id){
-        Optional<UserRela>userRelaOptional=userRelaService.findById(id);
-        if(!userRelaOptional.isPresent()){
+//    @DeleteMapping("/{id}")
+//    public ResponseEntity<UserRela> deleteUserRela(@PathVariable Long id){
+//        Optional<UserRela>userRelaOptional=userRelaService.findById(id);
+//        if(!userRelaOptional.isPresent()){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//        userRelaService.remove(id);
+//        return new ResponseEntity<>(userRelaOptional.get(),HttpStatus.NO_CONTENT);
+//    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UserRela> enableUserRela(@PathVariable Long id){
+        Optional<UserRela> userRelaOptional= UserRelaService.findById(id);
+        if (!userRelaOptional.isPresent()){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        userRelaService.remove(id);
-        return new ResponseEntity<>(userRelaOptional.get(),HttpStatus.NO_CONTENT);
+        userRelaOptional.get().setStatus(true);
+        return new ResponseEntity<>(userRelaOptional.get(),HttpStatus.OK);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserRela> disableUserRela(@PathVariable Long id){
+        Optional<UserRela>userRelaOptional=UserRelaService.findById(id);
+        if (!userRelaOptional.isPresent()){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        userRelaOptional.get().setStatus(false);
+        return new ResponseEntity<>(userRelaOptional.get(),HttpStatus.OK);
     }
 
 }

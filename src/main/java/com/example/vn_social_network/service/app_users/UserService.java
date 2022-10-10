@@ -20,7 +20,7 @@ public class UserService implements IUserService, UserDetailsService {
     }
 
     @Override
-    public Optional<AppUsers> findById(Long id) {
+    public static Optional<AppUsers> findById(Long id) {
         return userRepository.findById(id);
     }
 

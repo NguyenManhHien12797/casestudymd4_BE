@@ -32,5 +32,5 @@ public class UserRela {
 //    @JsonManagedReference
     private List<AppUsers> following;
 
-
+    private Boolean status;
 }
